@@ -17,16 +17,19 @@
     from t_type
     where id = #{id,jdbcType=BIGINT}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--@mbg.generated-->
     delete from t_type
     where id = #{id,jdbcType=BIGINT}
   </delete>
+
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ljx.blog.pojo.TType" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into t_type (`name`)
     values (#{name,jdbcType=VARCHAR})
   </insert>
+
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ljx.blog.pojo.TType" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into t_type
@@ -41,6 +44,7 @@
       </if>
     </trim>
   </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.ljx.blog.pojo.TType">
     <!--@mbg.generated-->
     update t_type
@@ -51,6 +55,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
+
   <update id="updateByPrimaryKey" parameterType="com.ljx.blog.pojo.TType">
     <!--@mbg.generated-->
     update t_type

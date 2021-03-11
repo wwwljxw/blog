@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * @author linjx
  */
@@ -38,5 +40,14 @@ public class LoginController {
             return "redirect:/admin";
         }
         return "admin/index";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.removeAttribute("user");
+        //        获取当前用户
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return "redirect:/admin";
     }
 }
