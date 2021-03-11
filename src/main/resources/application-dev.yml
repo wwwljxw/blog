@@ -1,0 +1,42 @@
+spring:
+
+  thymeleaf:
+    #关闭thymeleaf模板引擎缓存
+    cache: false
+
+  datasource:
+    druid:
+      username: root
+      password: 1111
+      url: jdbc:mysql://localhost:3306/blog?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
+      #配置Druid监控
+      filter:
+        stat:
+          enabled: true
+        wall:
+          enabled: true
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: true
+        login-username: admin
+        login-password: admin
+
+#pagehelper:                #分页插件
+#  helper-dialect: mysql
+#  reasonable: true
+#  support-methods-arguments: true
+#  params:
+
+mybatis:
+  mapper-locations: classpath:Mapper/*.xml   #ָ指定myBatis的核心配置文件与Mapper映射文件
+  type-aliases-package: com.ljx.blog.pojo
+
+logging:  #日志级别
+  level:
+    root: info
+    com.blog: debug
+  file:
+    path: log/blog-dev.log
+
+  #开发环境

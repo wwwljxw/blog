@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ljx.blog.Mapper.TBlogMapper">
+  <resultMap id="BaseResultMap" type="com.ljx.blog.pojo.TBlog">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="first_picture" jdbcType="VARCHAR" property="firstPicture" />
+    <result column="flag" jdbcType="VARCHAR" property="flag" />
+    <result column="views" jdbcType="INTEGER" property="views" />
+    <result column="appreciation" jdbcType="INTEGER" property="appreciation" />
+    <result column="share_statement" jdbcType="INTEGER" property="shareStatement" />
+    <result column="commentabled" jdbcType="INTEGER" property="commentabled" />
+    <result column="published" jdbcType="INTEGER" property="published" />
+    <result column="recommend" jdbcType="INTEGER" property="recommend" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="type_id" jdbcType="BIGINT" property="typeId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="tag_ids" jdbcType="VARCHAR" property="tagIds" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, title, content, first_picture, flag, views, appreciation, share_statement, commentabled, 
+    published, recommend, create_time, update_time, type_id, user_id, description, tag_ids
+  </sql>
+  <select id="getBlog" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+      id,published,flag,title,content,type_id,
+      tag_ids,first_picture,description,recommend,
+      share_statement,appreciation,commentabled
+    from t_blog
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from t_blog
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ljx.blog.pojo.TBlog" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_blog (title, content, first_picture, 
+      flag, views, appreciation, 
+      share_statement, commentabled, published, 
+      recommend, create_time, update_time, 
+      type_id, user_id, description, 
+      tag_ids)
+    values (#{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{firstPicture,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, #{appreciation,jdbcType=INTEGER}, 
+      #{shareStatement,jdbcType=INTEGER}, #{commentabled,jdbcType=INTEGER}, #{published,jdbcType=INTEGER}, 
+      #{recommend,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{typeId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{description,jdbcType=VARCHAR}, 
+      #{tagIds,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ljx.blog.pojo.TBlog" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_blog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="firstPicture != null">
+        first_picture,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="views != null">
+        views,
+      </if>
+      <if test="appreciation != null">
+        appreciation,
+      </if>
+      <if test="shareStatement != null">
+        share_statement,
+      </if>
+      <if test="commentabled != null">
+        commentabled,
+      </if>
+      <if test="published != null">
+        published,
+      </if>
+      <if test="recommend != null">
+        recommend,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="tagIds != null">
+        tag_ids,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="firstPicture != null">
+        #{firstPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="views != null">
+        #{views,jdbcType=INTEGER},
+      </if>
+      <if test="appreciation != null">
+        #{appreciation,jdbcType=INTEGER},
+      </if>
+      <if test="shareStatement != null">
+        #{shareStatement,jdbcType=INTEGER},
+      </if>
+      <if test="commentabled != null">
+        #{commentabled,jdbcType=INTEGER},
+      </if>
+      <if test="published != null">
+        #{published,jdbcType=INTEGER},
+      </if>
+      <if test="recommend != null">
+        #{recommend,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="typeId != null">
+        #{typeId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="tagIds != null">
+        #{tagIds,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ljx.blog.pojo.TBlog">
+    <!--@mbg.generated-->
+    update t_blog
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="firstPicture != null">
+        first_picture = #{firstPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="views != null">
+        views = #{views,jdbcType=INTEGER},
+      </if>
+      <if test="appreciation != null">
+        appreciation = #{appreciation,jdbcType=INTEGER},
+      </if>
+      <if test="shareStatement != null">
+        share_statement = #{shareStatement,jdbcType=INTEGER},
+      </if>
+      <if test="commentabled != null">
+        commentabled = #{commentabled,jdbcType=INTEGER},
+      </if>
+      <if test="published != null">
+        published = #{published,jdbcType=INTEGER},
+      </if>
+      <if test="recommend != null">
+        recommend = #{recommend,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="typeId != null">
+        type_id = #{typeId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="tagIds != null">
+        tag_ids = #{tagIds,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ljx.blog.pojo.TBlog">
+    <!--@mbg.generated-->
+    update t_blog
+    set title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      first_picture = #{firstPicture,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=VARCHAR},
+      views = #{views,jdbcType=INTEGER},
+      appreciation = #{appreciation,jdbcType=INTEGER},
+      share_statement = #{shareStatement,jdbcType=INTEGER},
+      commentabled = #{commentabled,jdbcType=INTEGER},
+      published = #{published,jdbcType=INTEGER},
+      recommend = #{recommend,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      type_id = #{typeId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      description = #{description,jdbcType=VARCHAR},
+      tag_ids = #{tagIds,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
