@@ -29,6 +29,10 @@
     select * from t_type where name = #{name}
   </select>
 
+<!--  首页右侧展示type对应的博客数量-->
+  <select id="getBlogType" resultMap="BaseResultMap" resultType="TType">
+  </select>
+
   <!--  依据id删除分类-->
   <delete id="deleteById" parameterType="java.lang.Long">
     <!--@mbg.generated-->

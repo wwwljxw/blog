@@ -15,44 +15,35 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TBlog implements Serializable {
-    /**
-     * 
-     *
-     * @mbg.generated 2021-03-07 18:20:26
-     */
+
     private Long id;
 
     /**
      * 标题
-     *
      * @mbg.generated 2021-03-07 18:20:26
      */
     private String title;
 
     /**
      * 博客内容
-     *
      * @mbg.generated 2021-03-07 18:20:26
      */
     private String content;
 
     /**
      * 首图
-     *
      * @mbg.generated 2021-03-07 18:20:26
      */
     private String firstPicture;
 
     /**
      * 标记
-     *
      * @mbg.generated 2021-03-07 18:20:26
      */
     private String flag;
 
     /**
      * 浏览次数
-     *
      * @mbg.generated 2021-03-07 18:20:26
      */
     private Integer views;
@@ -101,19 +92,20 @@ public class TBlog implements Serializable {
     private Date updateTime;
 
 
+    /**
+     * 分类id
+     */
     private Long typeId;
+    /**
+     * 用户id
+     */
     private Long userId;
 
-    /**
-     * 
-     *
-     * @mbg.generated 2021-03-07 18:20:26
-     */
+
     private String description;
 
     /**
-     * 
-     *
+     * 标签id
      * @mbg.generated 2021-03-07 18:20:26
      */
     private String tagIds;

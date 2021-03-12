@@ -26,6 +26,7 @@
     id, title, content, first_picture, flag, views, appreciation, share_statement, commentabled, 
     published, recommend, create_time, update_time, type_id, user_id, description, tag_ids
   </sql>
+<!--  根据id查询博客-->
   <select id="getBlog" parameterType="java.lang.Long" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
@@ -35,11 +36,15 @@
     from t_blog
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+
+<!--  根据id删除博客-->
+  <delete id="deleteBlog" parameterType="java.lang.Long">
     <!--@mbg.generated-->
     delete from t_blog
     where id = #{id,jdbcType=BIGINT}
   </delete>
+
+
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ljx.blog.pojo.TBlog" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into t_blog (title, content, first_picture, 
@@ -55,6 +60,8 @@
       #{typeId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{description,jdbcType=VARCHAR}, 
       #{tagIds,jdbcType=VARCHAR})
   </insert>
+
+
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ljx.blog.pojo.TBlog" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into t_blog

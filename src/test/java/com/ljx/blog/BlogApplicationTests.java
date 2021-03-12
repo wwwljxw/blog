@@ -1,8 +1,6 @@
 package com.ljx.blog;
 
 import com.github.pagehelper.PageInfo;
-import com.ljx.blog.Mapper.TTypeMapper;
-import com.ljx.blog.Mapper.TUserMapper;
 import com.ljx.blog.pojo.TType;
 import com.ljx.blog.service.TypeService;
 import org.junit.jupiter.api.Test;

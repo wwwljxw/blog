@@ -10,6 +10,8 @@ public interface TTypeMapper {
 
     List<TType> selectByList();
 
+    List<TType> getBlogType();
+
     TType selectById(long id);
 
     TType selectByNameAfter(String name);

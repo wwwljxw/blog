@@ -28,7 +28,6 @@ public class LoginController {
     @PostMapping (value = "/login")
     public String login(String username, String password, RedirectAttributes attributes){
 
-        System.out.println("登录执行");
 //        获取当前用户
         Subject subject = SecurityUtils.getSubject();
 //        封装用户登录的数据
