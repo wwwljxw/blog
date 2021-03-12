@@ -22,11 +22,10 @@ spring:
         login-username: admin
         login-password: admin
 
-#pagehelper:                #分页插件
-#  helper-dialect: mysql
-#  reasonable: true
-#  support-methods-arguments: true
-#  params:
+pagehelper:                #分页插件
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
 
 mybatis:
   mapper-locations: classpath:Mapper/*.xml   #ָ指定myBatis的核心配置文件与Mapper映射文件

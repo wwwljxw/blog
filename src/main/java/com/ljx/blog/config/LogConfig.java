@@ -20,48 +20,44 @@ import javax.servlet.http.HttpServletRequest;
 
 @Aspect
 @Component
+@Slf4j
 public class LogConfig {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    @Pointcut("execution(* com.ljx.blog.controller..*.*(..))")        //定义切入点表达式
+    public void log(){}
 
-    @Pointcut("execution(* com.ljx.blog.controller.*.*(..))")   //    定义切入点
-    public void log(){
-    }
-
-
-    @Before("log()")
+    @Before("log()")    //引用切入点
     public void doBefore(JoinPoint joinPoint){
+
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
 
-//        获得uri、ip
-        String uri = request.getRequestURI();
+        String url = request.getRequestURL().toString();
         String ip = request.getRemoteAddr();
-//        获得类名、方法名、方法参数
+        //获得类名.方法名
         String classMethod = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
+        //获得方法参数
         Object[] args = joinPoint.getArgs();
 
-//        封装并输出到日志
-        RequestLog requestLog = new RequestLog(uri, ip, classMethod);
-        logger.info("Request {}",requestLog);
+        RequestLog requestLog = new RequestLog(url, ip, classMethod, args);
+        //打印请求信息
+        log.info("Request: {}", requestLog);
     }
-//    @After("log()")
-//    public void doAfter(){
-//        log.info("----------doAfter--------");
-//    }
+
 
     @AfterReturning(returning = "result", pointcut = "log()")
     public void doAfterReturn(Object result){
 
         //打印返回值
-        logger.info("Result: {}", result);
+        log.info("Result: {}", result);
     }
 
     @Data
     @AllArgsConstructor
-    class RequestLog{
+    public class RequestLog{      //用于封装请求信息
         private String url;
         private String ip;
         private String classMethod;
+        private Object[] args;
     }
 }

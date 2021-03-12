@@ -10,7 +10,13 @@
     <!--@mbg.generated-->
     id, `name`
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+
+  <select id="selectByList" resultMap="BaseResultMap" resultType="TType">
+    select * from t_type
+  </select>
+
+<!--  依据id查询分类-->
+  <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select 
     <include refid="Base_Column_List" />
@@ -18,45 +24,27 @@
     where id = #{id,jdbcType=BIGINT}
   </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  <!--  依据name查询分类-->
+  <select id="selectByNameAfter" resultType="com.ljx.blog.pojo.TType">
+    select * from t_type where name = #{name}
+  </select>
+
+  <!--  依据id删除分类-->
+  <delete id="deleteById" parameterType="java.lang.Long">
     <!--@mbg.generated-->
     delete from t_type
     where id = #{id,jdbcType=BIGINT}
   </delete>
 
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ljx.blog.pojo.TType" useGeneratedKeys="true">
+<!--  添加分类，id自增-->
+  <insert id="insert"  parameterType="com.ljx.blog.pojo.TType">
     <!--@mbg.generated-->
     insert into t_type (`name`)
     values (#{name,jdbcType=VARCHAR})
   </insert>
 
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ljx.blog.pojo.TType" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into t_type
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="name != null">
-        `name`,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-
-  <update id="updateByPrimaryKeySelective" parameterType="com.ljx.blog.pojo.TType">
-    <!--@mbg.generated-->
-    update t_type
-    <set>
-      <if test="name != null">
-        `name` = #{name,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-
-  <update id="updateByPrimaryKey" parameterType="com.ljx.blog.pojo.TType">
+<!--  依据id来更新分类-->
+  <update id="updateById" parameterType="com.ljx.blog.pojo.TType">
     <!--@mbg.generated-->
     update t_type
     set `name` = #{name,jdbcType=VARCHAR}
