@@ -91,6 +91,9 @@ public class TBlog implements Serializable {
      */
     private Date updateTime;
 
+    private TType type;
+
+    private TUser user;
 
     /**
      * 分类id
@@ -101,7 +104,9 @@ public class TBlog implements Serializable {
      */
     private Long userId;
 
-
+    /**
+     * 博客简介
+     */
     private String description;
 
     /**

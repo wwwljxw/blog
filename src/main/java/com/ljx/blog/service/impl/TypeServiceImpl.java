@@ -16,6 +16,11 @@ public class TypeServiceImpl implements TypeService {
     @Autowired
     private TTypeMapper tTypeMapper;
 
+    @Override
+    public List<TType> getAllType() {
+        return tTypeMapper.selectByList();
+    }
+
     /**
      * 分页查询
      * @param page 页数

@@ -20,6 +20,10 @@
     <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="tag_ids" jdbcType="VARCHAR" property="tagIds" />
+    <association property="type" javaType="com.ljx.blog.pojo.TType">
+      <id property="id" column="typeid"/>
+      <result property="name" column="typename"/>
+    </association>
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
@@ -37,6 +41,35 @@
     where id = #{id,jdbcType=BIGINT}
   </select>
 
+<!--  获取所有博客-->
+  <select id="getAllBlog" resultMap="BaseResultMap" parameterType="list">
+    select
+           b.id,b.title,b.first_picture,b.views,b.update_time,b.description,t.name typename,t.id typeid
+     from
+          t_blog b join t_type t on b.type_id = t.id
+  </select>
+
+<!--  按条件查询博客-->
+  <select id="searchAllBlog" resultMap="BaseResultMap" parameterType="list">
+    <bind name="pattern" value="'%' + title + '%'" />
+    select
+        b.id, b.title, b.update_time, b.recommend, b.published, b.type_id, t.id, t.name
+    from t_blog b join t_type t on b.type_id = t.id
+        <where>
+            <if test="typeId != null">
+              and b.type_id = #{typeId}
+            </if>
+            <if test="recommend != null">
+              and b.recommend = #{recommend}
+            </if>
+            <if test="title != null">
+              and b.title like #{pattern}
+            </if>
+        </where>
+
+
+  </select>
+
 <!--  根据id删除博客-->
   <delete id="deleteBlog" parameterType="java.lang.Long">
     <!--@mbg.generated-->
@@ -44,129 +77,8 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
 
-
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ljx.blog.pojo.TBlog" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into t_blog (title, content, first_picture, 
-      flag, views, appreciation, 
-      share_statement, commentabled, published, 
-      recommend, create_time, update_time, 
-      type_id, user_id, description, 
-      tag_ids)
-    values (#{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{firstPicture,jdbcType=VARCHAR}, 
-      #{flag,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, #{appreciation,jdbcType=INTEGER}, 
-      #{shareStatement,jdbcType=INTEGER}, #{commentabled,jdbcType=INTEGER}, #{published,jdbcType=INTEGER}, 
-      #{recommend,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{typeId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{description,jdbcType=VARCHAR}, 
-      #{tagIds,jdbcType=VARCHAR})
-  </insert>
-
-
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ljx.blog.pojo.TBlog" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into t_blog
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="title != null">
-        title,
-      </if>
-      <if test="content != null">
-        content,
-      </if>
-      <if test="firstPicture != null">
-        first_picture,
-      </if>
-      <if test="flag != null">
-        flag,
-      </if>
-      <if test="views != null">
-        views,
-      </if>
-      <if test="appreciation != null">
-        appreciation,
-      </if>
-      <if test="shareStatement != null">
-        share_statement,
-      </if>
-      <if test="commentabled != null">
-        commentabled,
-      </if>
-      <if test="published != null">
-        published,
-      </if>
-      <if test="recommend != null">
-        recommend,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="updateTime != null">
-        update_time,
-      </if>
-      <if test="typeId != null">
-        type_id,
-      </if>
-      <if test="userId != null">
-        user_id,
-      </if>
-      <if test="description != null">
-        description,
-      </if>
-      <if test="tagIds != null">
-        tag_ids,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="title != null">
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null">
-        #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="firstPicture != null">
-        #{firstPicture,jdbcType=VARCHAR},
-      </if>
-      <if test="flag != null">
-        #{flag,jdbcType=VARCHAR},
-      </if>
-      <if test="views != null">
-        #{views,jdbcType=INTEGER},
-      </if>
-      <if test="appreciation != null">
-        #{appreciation,jdbcType=INTEGER},
-      </if>
-      <if test="shareStatement != null">
-        #{shareStatement,jdbcType=INTEGER},
-      </if>
-      <if test="commentabled != null">
-        #{commentabled,jdbcType=INTEGER},
-      </if>
-      <if test="published != null">
-        #{published,jdbcType=INTEGER},
-      </if>
-      <if test="recommend != null">
-        #{recommend,jdbcType=INTEGER},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="typeId != null">
-        #{typeId,jdbcType=BIGINT},
-      </if>
-      <if test="userId != null">
-        #{userId,jdbcType=BIGINT},
-      </if>
-      <if test="description != null">
-        #{description,jdbcType=VARCHAR},
-      </if>
-      <if test="tagIds != null">
-        #{tagIds,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ljx.blog.pojo.TBlog">
+<!--  根据id更新博客-->
+  <update id="updateBlog" parameterType="com.ljx.blog.pojo.TBlog">
     <!--@mbg.generated-->
     update t_blog
     <set>
@@ -221,25 +133,21 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ljx.blog.pojo.TBlog">
+
+<!--  添加博客-->
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ljx.blog.pojo.TBlog" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    update t_blog
-    set title = #{title,jdbcType=VARCHAR},
-      content = #{content,jdbcType=VARCHAR},
-      first_picture = #{firstPicture,jdbcType=VARCHAR},
-      flag = #{flag,jdbcType=VARCHAR},
-      views = #{views,jdbcType=INTEGER},
-      appreciation = #{appreciation,jdbcType=INTEGER},
-      share_statement = #{shareStatement,jdbcType=INTEGER},
-      commentabled = #{commentabled,jdbcType=INTEGER},
-      published = #{published,jdbcType=INTEGER},
-      recommend = #{recommend,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      type_id = #{typeId,jdbcType=BIGINT},
-      user_id = #{userId,jdbcType=BIGINT},
-      description = #{description,jdbcType=VARCHAR},
-      tag_ids = #{tagIds,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
+    insert into t_blog (title, content, first_picture, 
+      flag, views, appreciation, 
+      share_statement, commentabled, published, 
+      recommend, create_time, update_time, 
+      type_id, user_id, description, 
+      tag_ids)
+    values (#{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{firstPicture,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, #{appreciation,jdbcType=INTEGER}, 
+      #{shareStatement,jdbcType=INTEGER}, #{commentabled,jdbcType=INTEGER}, #{published,jdbcType=INTEGER}, 
+      #{recommend,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{typeId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{description,jdbcType=VARCHAR}, 
+      #{tagIds,jdbcType=VARCHAR})
+  </insert>
 </mapper>

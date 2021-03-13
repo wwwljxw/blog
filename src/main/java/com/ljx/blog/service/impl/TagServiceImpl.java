@@ -19,6 +19,11 @@ public class TagServiceImpl implements TagService {
     private TTagMapper tTagMapper;
 
     @Override
+    public List<TTag> getAllTag() {
+        return tTagMapper.selectByList();
+    }
+
+    @Override
     public PageInfo<TTag> findAllByPage(int page, int offset) {
         Page<Object> objects = PageHelper.startPage(page, offset);
         List<TTag> tTags = tTagMapper.selectByList();

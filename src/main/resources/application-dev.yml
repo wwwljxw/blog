@@ -31,7 +31,8 @@ mybatis:
   mapper-locations: classpath:Mapper/*.xml   #ָ指定myBatis的核心配置文件与Mapper映射文件
   type-aliases-package: com.ljx.blog.pojo
   configuration:
-    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jLoggerImpl
+
 
 logging:  #日志级别
   level:
