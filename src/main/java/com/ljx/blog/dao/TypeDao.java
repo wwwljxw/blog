@@ -7,11 +7,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * @Author: ONESTAR
+
  * @Description: 文章分类持久层接口
  * @Date: Created in 15:14 2020/3/27
- * @QQ群: 530311074
- * @URL: https://onestar.newstar.net.cn/
+
  */
 @Mapper
 @Repository

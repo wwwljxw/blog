@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>博客管理</title>
-  <link href="../static/images/favicon.ico" th:href="@{/images/me.jpg}" rel="icon" type="image/x-ico">
+  <link href="../../static/images/me.jpg" th:href="@{/images/me.jpg}" rel="icon" type="image/x-ico">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
   <link rel="stylesheet" href="../../static/css/me.css" th:href="@{/css/me.css}">
 </head>
@@ -15,19 +15,19 @@
   <div class="ui container">
     <div class="ui inverted secondary stackable menu">
       <h2 class="ui olive header item" style="font-family: STSong">管理后台</h2>
-      <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide"><i class="home icon"></i>文章管理</a>
-      <a href="#" th:href="@{/admin/types}" class="m-item item m-mobile-hide"><i class="clone outline icon"></i>分类管理</a>
-      <a href="#" th:href="@{/admin/friendlinks}" class="m-item item m-mobile-hide"><i class="pencil alternate icon"></i>友链管理</a>
-      <a href="#" th:href="@{/admin/pictures}" class=" m-item item m-mobile-hide"><i class="image icon"></i>相册管理</a>
+      <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>文章管理</a>
+      <a href="#" class="m-item item m-mobile-hide"><i class="clone outline icon"></i>分类管理</a>
+      <a href="#" class="m-item item m-mobile-hide"><i class="pencil alternate icon"></i>友链管理</a>
+      <a href="#" class=" m-item item m-mobile-hide"><i class="image icon"></i>相册管理</a>
       <div class="right m-item m-mobile-hide menu">
         <div class="ui dropdown  item">
           <div class="text">
-            <img class="ui avatar image" src="/static/images/me.jpg" th:src="@{${session.user.avatar}}">
-            <span th:text="${session.user.nickname}">oneStar</span>
+            <img class="ui avatar image" src="../../static/images/me.jpg">
+            <span>oneStar</span>
           </div>
           <i class="dropdown icon"></i>
           <div class="menu">
-            <a href="#" th:href="@{/admin/logout}" class="item">注销</a>
+            <a href="#" class="item">注销</a>
           </div>
         </div>
       </div>
@@ -49,7 +49,7 @@
         <p align="center">念念不忘，必有回响</p>
       </div>
 
-      <img src="/static/images/backimg.jpg" th:src="@{/images/backimg.jpg}" alt="" class="ui rounded bordered fluid image">
+      <img src="../../static/images/backimg.jpg" alt="" class="ui rounded bordered fluid image">
     </div>
   </div>
 
@@ -60,11 +60,6 @@
     <div class="ui inverted divided stackable grid">
       <div class="four wide column">
         <div style="font-size: large;font-weight: bold" class="ui inverted m-text-thin m-text-spaced m-margin-top-max" >联系我</div>
-        <!--<div id="newblog-container">-->
-        <!--<div class="ui inverted link list" th:fragment="newblogList">-->
-        <!--<a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="item m-text-thin" th:each="blog : ${newblogs}" th:text="${blog.title}">最新文章</a>-->
-        <!--</div>-->
-        <!--</div>-->
         <div class="ui inverted link list">
           <div href="#" class="m-text-thin">Email：onestarlr@hotmail.com</div>
           <div href="#" class="m-text-thin">QQ：316392836</div>
@@ -95,18 +90,18 @@
         <div style="font-size: large;font-weight: bold" class="ui inverted  m-text-thin m-text-spaced m-margin-top">客栈信息</div>
         <!--<p id="htmer_time" class="item m-text-thin"></p>-->
         <div id="blog-message">
-          <div class="ui inverted link list" style="align-content: center;margin-top: 10px" th:fragment="blogMessage">
+          <div class="ui inverted link list" style="align-content: center;margin-top: 10px">
             <div class="m-text-thin" style="text-align: left;margin-left: 75px;">
-              文章总数： <h2 class="ui orange header m-inline-block m-margin-top-null" style="font-size:medium;" th:text="${blogTotal}"> 14 </h2> 篇
+              文章总数： <h2 class="ui orange header m-inline-block m-margin-top-null" style="font-size:medium;"> 14 </h2> 篇
             </div>
             <div class="m-text-thin" style="text-align: left;margin-left: 75px">
-              访问总数： <h2 class="ui orange header m-inline-block m-margin-top-null" style="font-size:medium;" th:text="${blogViewTotal}"> 14 </h2> 次
+              访问总数： <h2 class="ui orange header m-inline-block m-margin-top-null" style="font-size:medium;"> 14 </h2> 次
             </div>
             <div class="m-text-thin" style="text-align: left;margin-left: 75px">
-              评论总数： <h2 class="ui orange header m-inline-block m-margin-top-null" style="font-size:medium;" th:text="${blogCommentTotal}"> 14 </h2> 条
+              评论总数： <h2 class="ui orange header m-inline-block m-margin-top-null" style="font-size:medium;"> 14 </h2> 条
             </div>
             <div class="m-text-thin" style="text-align: left;margin-left: 75px">
-              留言总数： <h2 class="ui orange header m-inline-block m-margin-top-null" style="font-size:medium;" th:text="${blogMessageTotal}"> 14 </h2> 条
+              留言总数： <h2 class="ui orange header m-inline-block m-margin-top-null" style="font-size:medium;"> 14 </h2> 条
             </div>
           </div>
         </div>
@@ -127,8 +122,6 @@
 
       // $('#newblog-container').load(/*[[@{/footer/newblog}]]*/"/footer/newblog");
 
-
-      $('#blog-message').load(/*[[@{/footer/blogmessage}]]*/"/footer/blogmessage");
       // 运行时间统计
       function secondToDate(second) {
           if (!second) {

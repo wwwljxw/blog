@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.star.dao.TypeDao">
+<mapper namespace="com.ljx.blog.dao.TypeDao">
 
     <!--新增保存分类-->
-    <insert id="saveType" parameterType="com.star.entity.Type">
+    <insert id="saveType" parameterType="com.ljx.blog.entity.Type">
         insert into myblog.t_type values (#{id},#{name});
     </insert>
 
     <!--根据id，name查询分类-->
-    <select id="getType" resultType="com.star.entity.Type">
+    <select id="getType" resultType="com.ljx.blog.entity.Type">
         select id,name from myblog.t_type where id = #{id}
     </select>
 
     <!--查询所有分类-->
-    <select id="getAllType" resultType="com.star.entity.Type">
+    <select id="getAllType" resultType="com.ljx.blog.entity.Type">
         select * from myblog.t_type
     </select>
 
 
-    <resultMap id="type" type="com.star.entity.Type">
+    <resultMap id="type" type="com.ljx.blog.entity.Type">
         <id property="id" column="tid"/>
         <result property="name" column="name"/>
-        <collection property="blogs" ofType="com.star.entity.Blog">
+        <collection property="blogs" ofType="com.ljx.blog.entity.Blog">
             <id property="id" column="bid"/>
             <result property="title" column="title"/>
             <result property="typeId" column="type_id"/>
@@ -36,12 +36,12 @@
 
 
     <!--根据分类名称来查询-->
-    <select id="getTypeByName" resultType="com.star.entity.Type">
+    <select id="getTypeByName" resultType="com.ljx.blog.entity.Type">
         select * from myblog.t_type where name = #{name}
     </select>
 
     <!--编辑修改分类-->
-    <update id="updateType" parameterType="com.star.entity.Type">
+    <update id="updateType" parameterType="com.ljx.blog.entity.Type">
         update myblog.t_type set name = #{name} where id = #{id};
     </update>
 
