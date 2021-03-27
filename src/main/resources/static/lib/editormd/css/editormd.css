@@ -4420,7 +4420,7 @@ hr.editormd-page-break {
 
 .editormd-fullscreen {
   position: fixed;
-  top: 0;
+  top: 60px;
   left: 0;
   border: none;
   margin: 0 auto;

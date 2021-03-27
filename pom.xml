@@ -18,7 +18,15 @@
     </properties>
     <dependencies>
 
-<!--        mybatis分页插件pagehelper-->
+        <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+<!--        <dependency>-->
+<!--            <groupId>redis.clients</groupId>-->
+<!--            <artifactId>jedis</artifactId>-->
+<!--            <version>3.5.2</version>-->
+<!--        </dependency>-->
+
+
+        <!--        mybatis分页插件pagehelper-->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
