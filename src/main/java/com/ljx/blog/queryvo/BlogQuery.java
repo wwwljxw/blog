@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 /**
- * @Description: 显示数据实体类
+ * @Description: 查询博客实体类
  */
 
 @Data

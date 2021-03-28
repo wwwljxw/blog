@@ -40,8 +40,8 @@
 
     <!--查询文章管理列表-->
     <select id="getAllBlogQuery" resultMap="blog">
-        select b.id,b.title,b.update_time,b.recommend,b.published,b.type_id,t.id,t.name from myblog.t_blog b left outer join
-        myblog.t_type t on b.type_id = t.id order by b.update_time desc
+        select b.id,b.title,b.update_time,b.recommend,b.published,b.type_id,t.id,t.name from t_blog b inner join
+        t_type t on b.type_id = t.id order by b.update_time desc
     </select>
 
     <!--删除文章-->
