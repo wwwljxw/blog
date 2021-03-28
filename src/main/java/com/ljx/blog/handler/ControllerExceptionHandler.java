@@ -25,7 +25,7 @@ public class ControllerExceptionHandler {
     public ModelAndView exceptionHandler( HttpServletRequest request, Exception e) throws Exception {
         logger.error("Request url : {}, Exception : {}",request.getRequestURI(),e);
 
-        //不处理带有ResponseStatus注解的异常
+        //不处理带有状态码的异常
         if (AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class) != null) {
             throw e;
         }

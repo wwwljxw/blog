@@ -1,31 +1,24 @@
-package com.ljx.blog.dao;
+package com.ljx.blog.service;
+
 
 import com.ljx.blog.entity.Type;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
- * @Description: 文章分类持久层接口
+ * @Description 分类业务层接口
+ * @author Lin
  */
-@Mapper
-@Repository
-public interface TypeDao {
-
+public interface TypeService {
     int saveType(Type type);
 
     Type getType(Long id);
 
     List<Type> getAllType();
 
-    List<Type> getAllTypeAndBlog();
-
     Type getTypeByName(String name);
 
     int updateType(Type type);
 
     void deleteType(Long id);
-
-
 }

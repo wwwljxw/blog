@@ -9,7 +9,7 @@ import springfox.documentation.oas.annotations.EnableOpenApi;
  * @author linjx
  */
 @SpringBootApplication
-@MapperScan("com.ljx.blog.Mapper")
+@MapperScan("com.ljx.blog.Dao")
 @EnableOpenApi
 public class BlogApplication {
 
