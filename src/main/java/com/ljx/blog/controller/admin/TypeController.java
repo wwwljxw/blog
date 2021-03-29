@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -47,18 +48,18 @@ public class TypeController {
     }
 
     @PostMapping("/types/{id}")
-    public String updateType(Type type,Model model){
+    public String updateType(Type type, RedirectAttributes attributes){
         Type typeByName = typeService.getTypeByName(type.getName());
         if (typeByName != null){
-            model.addAttribute("message","该分类未修改或已存在，不能重复添加");
+            attributes.addFlashAttribute("message","该分类未修改或已存在，不能重复添加");
             return "redirect:/admin/types/input";
         }
 
         int i = typeService.updateType(type);
         if (i == 0){
-            model.addAttribute("message","编辑失败");
+            attributes.addFlashAttribute("message","编辑失败");
         }else {
-            model.addAttribute("message","编辑成功");
+            attributes.addFlashAttribute("message","编辑成功");
         }
         return "redirect:/admin/types";
     }
@@ -73,26 +74,26 @@ public class TypeController {
     }
 
     @PostMapping("/types")
-    public String addType(Type type,Model model){
+    public String addType(Type type,RedirectAttributes attributes){
         Type typeByName = typeService.getTypeByName(type.getName());
         if (typeByName != null){
-            model.addAttribute("message","该分类已存在，不能重复添加");
+            attributes.addFlashAttribute("message","该分类已存在，不能重复添加");
             return "redirect:/admin/types/input";
         }
 
         int i = typeService.saveType(type);
         if (i == 0){
-            model.addAttribute("message","新增失败");
+            attributes.addFlashAttribute("message","新增失败");
         }else {
-            model.addAttribute("message","新增成功");
+            attributes.addFlashAttribute("message","新增成功");
         }
         return "redirect:/admin/types";
     }
 
     @GetMapping("/types/{id}/delete")
-    public String deleteType(@PathVariable long id,Model model){
+    public String deleteType(@PathVariable long id,RedirectAttributes attributes){
         typeService.deleteType(id);
-        model.addAttribute("message","删除成功");
+        attributes.addFlashAttribute("message","删除成功");
         return "redirect:/admin/types";
     }
 }

@@ -1,6 +1,8 @@
 package com.ljx.blog.service;
 
+import com.ljx.blog.entity.Blog;
 import com.ljx.blog.queryvo.BlogQuery;
+import com.ljx.blog.queryvo.SearchBlog;
 import com.ljx.blog.queryvo.ShowBlog;
 
 import java.util.List;
@@ -17,5 +19,10 @@ public interface BlogService {
 
     int updateBlog(ShowBlog showBlog);
 
+    int saveBlog(Blog blog);
+
+    void deleteBlog(Long id);
+
+    List<BlogQuery> getBlogBySearch(SearchBlog searchBlog);
 
 }
