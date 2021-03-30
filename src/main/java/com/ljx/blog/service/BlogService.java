@@ -1,9 +1,7 @@
 package com.ljx.blog.service;
 
 import com.ljx.blog.entity.Blog;
-import com.ljx.blog.queryvo.BlogQuery;
-import com.ljx.blog.queryvo.SearchBlog;
-import com.ljx.blog.queryvo.ShowBlog;
+import com.ljx.blog.queryvo.*;
 
 import java.util.List;
 
@@ -24,5 +22,22 @@ public interface BlogService {
     void deleteBlog(Long id);
 
     List<BlogQuery> getBlogBySearch(SearchBlog searchBlog);
+
+
+    List<FirstPageBlog> getAllFirstPageBlog();
+
+    List<RecommendBlog> getRecommendedBlog();
+
+
+    List<FirstPageBlog> getSearchBlog(String query);
+
+
+    Integer getBlogTotal();
+
+    Integer getBlogViewTotal();
+
+    Integer getBlogCommentTotal();
+
+    Integer getBlogMessageTotal();
 
 }
