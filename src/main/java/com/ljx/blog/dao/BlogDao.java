@@ -10,9 +10,7 @@ import java.util.List;
 
 /**
  * @Description: 博客持久层接口
- * @Date: Created in 23:37 2020/3/30
  */
-@Mapper
 @Repository
 public interface BlogDao {
 

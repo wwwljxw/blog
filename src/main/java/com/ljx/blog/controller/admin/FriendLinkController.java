@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 /**
+ * @Description 友链管理控制器
  * @author Lin
  */
 @Controller

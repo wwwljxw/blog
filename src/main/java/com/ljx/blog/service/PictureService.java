@@ -1,17 +1,14 @@
-package com.ljx.blog.dao;
-
+package com.ljx.blog.service;
 
 import com.ljx.blog.entity.Picture;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
- * @Description: 照片墙持久层接口
+ * @Description 照片墙业务层接口
+ * @author Lin
  */
-@Repository
-public interface PictureDao {
+public interface PictureService {
 
     List<Picture> listPicture();
 
@@ -22,5 +19,4 @@ public interface PictureDao {
     int updatePicture(Picture picture);
 
     void deletePicture(Long id);
-
 }

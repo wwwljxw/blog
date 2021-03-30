@@ -9,7 +9,6 @@ import java.util.List;
 /**
  * @Description: 文章分类持久层接口
  */
-@Mapper
 @Repository
 public interface TypeDao {
 

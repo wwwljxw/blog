@@ -10,11 +10,7 @@ import java.util.List;
 
 /**
  * @Description: 评论持久层接口
-
- * @Date: Created in 13:42 2020/4/5
-
  */
-@Mapper
 @Repository
 public interface CommentDao {
 

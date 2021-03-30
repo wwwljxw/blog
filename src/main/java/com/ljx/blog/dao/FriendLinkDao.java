@@ -9,11 +9,7 @@ import java.util.List;
 
 /**
  * @Description: 友链持久层接口
- * @Date: Created in 14:29 2020/4/16
-
-
  */
-@Mapper
 @Repository
 public interface FriendLinkDao {
 
