@@ -40,4 +40,12 @@ public interface BlogService {
 
     Integer getBlogMessageTotal();
 
+
+    DetailedBlog getDetailedBlog(Long id);
+
+
+    int updateViews(Long id);
+
+
+    int getCommentCountById(Long id);
 }

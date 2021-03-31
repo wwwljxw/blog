@@ -8,7 +8,6 @@ import java.util.Date;
 
 /**
  * @Description: 博客首页数据实体类
- * @Date: Created in 9:09 2020/4/3
  */
 
 @Data

@@ -40,7 +40,6 @@ public interface BlogDao {
 
     int updateViews(Long id);
 
-//    根据博客id查询出评论数量
     int getCommentCountById(Long id);
 
     List<FirstPageBlog> getByTypeId(Long typeId);

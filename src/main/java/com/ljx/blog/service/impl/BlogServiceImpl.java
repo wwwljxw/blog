@@ -4,6 +4,7 @@ import com.ljx.blog.dao.BlogDao;
 import com.ljx.blog.entity.Blog;
 import com.ljx.blog.queryvo.*;
 import com.ljx.blog.service.BlogService;
+import com.ljx.blog.utils.MarkdownUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -106,6 +107,42 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Integer getBlogMessageTotal() {
         return blogDao.getBlogMessageTotal();
+    }
+
+    /**
+     * @Description 查询博客详情
+     * @param id    要查询的博客的id
+     */
+    @Override
+    public DetailedBlog getDetailedBlog(Long id) {
+//        查询博客详情
+        DetailedBlog detailedBlog = blogDao.getDetailedBlog(id);
+//        将markdown格式文档转换为html
+        String content = detailedBlog.getContent();
+        detailedBlog.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
+//        自增浏览量
+        blogDao.updateViews(id);
+//        查询评论量并更新
+        blogDao.getCommentCountById(id);
+        return detailedBlog;
+    }
+
+    /**
+     * @Description 文章访问更新
+     * @param id 要更新浏览量的文章
+     */
+    @Override
+    public int updateViews(Long id) {
+        return blogDao.updateViews(id);
+    }
+
+    /**
+     * @Description 根据博客id查询出评论数量
+     * @param id 要查询评论量的博客
+     */
+    @Override
+    public int getCommentCountById(Long id) {
+        return blogDao.getCommentCountById(id);
     }
 
 
