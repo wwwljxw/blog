@@ -26,9 +26,7 @@ class BlogApplicationTests {
 
     @Test
     void contextLoads() {
-        Integer blogTotal = blogDao.getBlogTotal();
-
-        System.out.println(blogTotal);
+        blogDao.getBlogTotal();
     }
 
 }
