@@ -43,9 +43,5 @@ public interface BlogService {
 
     DetailedBlog getDetailedBlog(Long id);
 
-
-    int updateViews(Long id);
-
-
-    int getCommentCountById(Long id);
+    List<FirstPageBlog> getByTypeId(Long typeId);
 }

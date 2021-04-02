@@ -21,6 +21,7 @@ public class BlogQuery {
     private Long id;
     private String title;
     private Date updateTime;
+    private Date createTime;
     private Boolean recommend;
     private Boolean published;
     private Long typeId;

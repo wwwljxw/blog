@@ -128,21 +128,11 @@ public class BlogServiceImpl implements BlogService {
     }
 
     /**
-     * @Description 文章访问更新
-     * @param id 要更新浏览量的文章
+     * @Description 根据TypeId查询博客列表，显示在前台分类页面
      */
     @Override
-    public int updateViews(Long id) {
-        return blogDao.updateViews(id);
-    }
-
-    /**
-     * @Description 根据博客id查询出评论数量
-     * @param id 要查询评论量的博客
-     */
-    @Override
-    public int getCommentCountById(Long id) {
-        return blogDao.getCommentCountById(id);
+    public List<FirstPageBlog> getByTypeId(Long typeId) {
+        return blogDao.getByTypeId(typeId);
     }
 
 

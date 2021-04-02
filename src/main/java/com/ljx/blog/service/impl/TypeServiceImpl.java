@@ -77,4 +77,12 @@ public class TypeServiceImpl implements TypeService {
     public void deleteType(Long id) {
         typeDao.deleteType(id);
     }
+
+    /**
+     * @Description 前台查询所有分类
+     */
+    @Override
+    public List<Type> getAllTypeAndBlog() {
+        return typeDao.getAllTypeAndBlog();
+    }
 }
