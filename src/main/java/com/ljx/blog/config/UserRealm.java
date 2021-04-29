@@ -35,6 +35,7 @@ public class UserRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+//        获取用户输入的账号密码
         UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) authenticationToken;
         User user = userService.checkUser(usernamePasswordToken.getUsername());
         Subject subject = SecurityUtils.getSubject();
